@@ -40,4 +40,3 @@ eureka:
   client:
     service-url:
       defaultZone: http://eureka-7901:7901/eureka/,http://eureka-7902:7902/eureka/
-

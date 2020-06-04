@@ -4,6 +4,8 @@ eureka:
       defaultZone: http://eureka-7901:7901/eureka/
 server:
   port: 8081
-spring:
   application:
     name: consumer
+provider:
+  ribbon:
+    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule

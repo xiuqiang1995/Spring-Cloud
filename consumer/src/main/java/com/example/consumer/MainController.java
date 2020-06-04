@@ -27,6 +27,9 @@ public class MainController {
     @Autowired
     LoadBalancerClient lb;
 
+    @Autowired
+    RestTemplate restTemplate;
+
     @GetMapping("/client")
     public String client() {
         List<String> services = dc.getServices();
@@ -90,6 +93,24 @@ public class MainController {
         RestTemplate restTemplate = new RestTemplate();
         String forObject = restTemplate.getForObject(url, String.class);
         System.out.println("forObject = " + forObject);
+        return forObject;
+    }
+
+    @GetMapping("/client6")
+    public Object client6() {
+
+        //ribbon 完成客户端负载均衡，并过滤掉 DOWN 了的节点
+        ServiceInstance instance = lb.choose("provider");
+
+        String url = "http://" + instance.getHost() + ":" + instance.getPort() + "/hi";
+        String forObject = restTemplate.getForObject(url, String.class);
+        return forObject;
+    }
+
+    @GetMapping("/client7")
+    public Object client7() {
+        String url = "http://provider/hi";
+        String forObject = restTemplate.getForObject(url, String.class);
         return forObject;
     }
 }

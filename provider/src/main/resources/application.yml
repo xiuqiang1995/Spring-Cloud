@@ -1,9 +1,29 @@
 eureka:
   client:
+    healthcheck:
+      #可以上报服务的真实健康状态
+      enabled: true
     service-url:
       defaultZone: http://eureka-7901:7901/eureka/
-server:
-  port: 8080
+management:
+  endpoint:
+    shutdown:
+      #可以远程关闭服务节点（支持 POST 请求方式，不支持 get）
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: '*'
 spring:
   application:
     name: provider
+---
+server:
+  port: 8080
+spring:
+  profiles: 8080
+---
+server:
+  port: 8090
+spring:
+  profiles: 8090
