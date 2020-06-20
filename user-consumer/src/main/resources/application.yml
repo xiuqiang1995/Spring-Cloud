@@ -12,6 +12,11 @@ spring:
 #      rate: 1
   application:
     name: consumer
+  boot:
+    admin:
+      client:
+        url: http://localhost:8080
+
 server:
   port: 8088
 ---
@@ -24,6 +29,7 @@ server:
   port: 8089
 spring:
   profiles: 8089
+
 
 ribbon:
   #连接超时时间(ms)
@@ -44,4 +50,8 @@ management:
   endpoints:
     web:
       exposure:
-        include: '*'
+        include: "*"
+    health:
+      ##默认是never
+      show-details: ALWAYS
+      enabled: true

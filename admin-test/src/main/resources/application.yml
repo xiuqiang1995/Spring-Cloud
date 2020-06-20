@@ -1,0 +1,22 @@
+# 邮件设置
+mail:
+  host: smtp.qq.com
+  username: 554389585
+  password: yrcblmochrkcbbdb
+  properties:
+    mail:
+      smpt:
+        auth: true
+        starttls:
+          enable: true
+          required: true
+spring:
+  boot:
+    admin:
+      notify:
+        mail:
+          #收件邮箱
+          to: 554389585@qq.com
+          # 发件邮箱
+          from: 554389585@qq.com
+
